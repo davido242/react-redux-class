@@ -2,43 +2,38 @@ import React from 'react';
 // import ReactDOM from 'react-dom';
 import Greet from './Greet';
 
-class Results extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-  render() {
-    return (
-      <h1>
-      {this.props.fiftyFifty ? "You Win!" : "You Lose!"}
-      </h1>
-    )
-  };
-};
-
 class GameOfChance extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      counter: 1
-    }
-    this.handleClick = this.handleClick.bind(this);
+      input: ''
+    };
+    this.handleChange = this.handleChange.bind(this);
   }
-  handleClick() {
-    this.setState({
-      counter: this.state.counter + 1 // change code here
-    });
+  handleChange(event) {
+    this.setState({ input: event.target.value })
   }
   render() {
-    const expression = Math.random() >= 0.5 ? true : false
+    let inputStyle = {
+      border: '1px solid black'
+    };
+
+    if (this.state.input.length > 15) {
+      inputStyle.border = '3px solid red';
+    }
+    const expression = inputStyle.border = '3px solid red' ? true : false;
+
     return (
       <div>
-        <button onClick={this.handleClick}>Play Again</button>
-        { /* change code below this line */ }
-        <Results fiftyFifty={expression} />
-        <Greet fiftyFifty={expression} />
-        { /* change code above this line */ }
-        <p>{'Turn: ' + this.state.counter}</p>
-        < Greet />
+        <h3>Don't Type Too Much:</h3>
+        <input
+          type="text"
+          style={inputStyle}
+          value={this.state.input}
+          onChange={this.handleChange} />
+          <br />
+          <br />
+          < Greet Greet={expression} />
       </div>
     );
   }

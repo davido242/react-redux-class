@@ -7,7 +7,7 @@ class Greet extends React.Component {
   }
   render() {
     return (
-     <h1>Pimps all the way</h1>
+     <h1>Text should not be more than 15 in length!</h1>
       )
   }
 }
