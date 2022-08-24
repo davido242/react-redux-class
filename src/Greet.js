@@ -1,15 +1,12 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+// React Redux Class begins 7th July, 2022
+import { useEffect } from 'react';
 
-class Greet extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-  render() {
-    return (
-     <h1>Text should not be more than 15 in length!</h1>
-      )
-  }
+function Greet({ name }) {
+  const message = `Hello, ${name}!`;
+  useEffect(() => {
+    document.title = `Greetings to ${name}`; 
+  }, [name]);
+  return <div>{message}</div>;
 }
 
 export default Greet;

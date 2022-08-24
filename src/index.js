@@ -1,13 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import CheckUserAge from './App';
+import CheckAge from './App';
 // import Greet from './Greet'
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
   <React.StrictMode>
-    <CheckUserAge />
+    <CheckAge />
   </React.StrictMode>,
   document.getElementById('root')
 );
