@@ -1,78 +1,54 @@
 import React from "react";
 
-class DisplayMessages extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      input: "",
-      messages: [],
-    };
-    this.handleChange = this.handleChange.bind(this);
-    this.submitMessages = this.submitMessages.bind(this);
+const quoteData = [
+  { text: "Hi Daveed, its been a while, you aiit?", author: "Joycee Rice" },
+  { text: "Belief creates the actual fact.", author: "William James" },
+  {
+    text: "It is during our darkest moments that we must focus to see the light.",
+    author: "Aristotle",
+  },
+  {
+    text: "Not having the best situation, but seeing the best in your situation is the key to happiness.",
+    author: "Marie Forleo",
+  },
+  {
+    text: "I am experienced enough to do this. I am knowledgeable enough to do this. I am prepared enough to do this. I am mature enough to do this. I am brave enough to do this.",
+    author: "Alexandria Ocasio-Cortez",
+  },
+];
 
-  }
-  
-  handleChange(e) {
-    this.setState({
-      input: e.target.value,
-      messages: this.state.messages,
-    });
-  }
+const QuoteBox = ({ quote, handleNewQuote }) => (
+  <div id="quote-box">
+    <p id="text">{quote.text}</p>
+    <h2 id="author">{"Aurthor: " + quote.author}</h2>
+    <div className="actions">
+      <button id="new-quote" className="button" onClick={handleNewQuote}>
+        New Quote
+      </button>
+      <a
+        href="https://twitter.com/intent/tweet"
+        id="tweet-quote"
+        target="_blank"
+      >
+        Tweet
+      </a>
+    </div>
+  </div>
+);
 
-  submitMessages() {
-    this.setState({
-      input: "",
-      messages: [...this.state.messages, this.state.input],
-    });
-  }
-  render() {
-    return (
-      <div>
-        <input
-          onChange={this.handleChange}
-          value={this.state.input}
-        />
-        <button onClick={this.submitMessages}>Submit</button>
-        <ul>
-          {this.state.messages.map((x, i) => {
-            return <li key={i}>{x}</li>;
-          })}
-        </ul>
-      </div>
-    );
-  }
-}
 
-// Extracting state logig to Redux
-
-// First, define an action type ADD and set it to a variable ADD
-
-const ADD = "ADD";
-
-// Secondly, to define an action creator addMessage() which creates the action to add message
-
-const addMessage = (message) => {
-  return {
-    type: ADD,
-    message
-  };
-};
-
-// Thirdly, is to use the es6 default previousstate parameter to give it an initial value
-
-const messageReducer = (previousState = [], action) => {
-  switch (action.type) {
-    case ADD:
-      return [...previousState, action.message];
-      break;
+const Task = () => {
+    const getRandomIndex = () =>
+      Math.round(Math.random() * (quoteData.length - 1 - 0) + 0);
       
-      default:
-        return previousState;
-  }
+  const [quote, setQuote] = React.useState(quoteData[getRandomIndex()]);
+  const handleNewQuote = () => {
+    setQuote(quoteData[getRandomIndex()]);
+  };
+  return (
+    <div className="main">
+      <QuoteBox quote={quote} handleNewQuote={handleNewQuote} />
+    </div>
+  );
 };
-
-const store = Redux.createStore(messageReducer);
-
-
-
-export default DisplayMessages;
+export default Task;

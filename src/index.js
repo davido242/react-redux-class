@@ -1,13 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import CheckAge from './App';
-// import Greet from './Greet'
-import reportWebVitals from './reportWebVitals';
+import GameOfChance from './App';
 
 ReactDOM.render(
   <React.StrictMode>
-    <CheckAge />
+    <GameOfChance />
   </React.StrictMode>,
   document.getElementById('root')
 );
